@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "GkI2enc3IK8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\willi\\OneDrive\\Documents\\RealTimeChatApp\\Server\\Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\willi\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\11.0.0-preview.3.26207.106\\microsoft.aspnetcore.app.internal.assets.11.0.0-preview.3.26207.106.nupkg.sha512",
+    "C:\\Users\\willi\\.nuget\\packages\\microsoft.aspnetcore.signalr\\1.2.12\\microsoft.aspnetcore.signalr.1.2.12.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference Microsoft.AspNetCore.SignalR will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "C:\\Users\\willi\\OneDrive\\Documents\\RealTimeChatApp\\Server\\Server.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\willi\\OneDrive\\Documents\\RealTimeChatApp\\Server\\Server.csproj",
+      "libraryId": "Microsoft.AspNetCore.SignalR",
+      "targetGraphs": [
+        "net11.0"
+      ]
+    }
+  ]
+}

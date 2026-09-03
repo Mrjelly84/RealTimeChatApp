@@ -1,0 +1,11 @@
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\bin\Debug\net11.0\Shared.deps.json
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\bin\Debug\net11.0\Shared.dll
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\bin\Debug\net11.0\Shared.pdb
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Shared.AssemblyInfoInputs.cache
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Shared.AssemblyInfo.cs
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Shared.csproj.CoreCompileInputs.cache
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Shared.dll
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\refint\Shared.dll
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Shared.pdb
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\ref\Shared.dll
