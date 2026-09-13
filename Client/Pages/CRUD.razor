@@ -1,0 +1,188 @@
+@page "/crud"
+@using Shared.Models
+@inject HttpClient Http
+
+<h1>CRUD App</h1>
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <h3>Add New Item</h3>
+            <form @onsubmit="AddItem">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" @bind="newItem.Name" required />
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" @bind="newItem.Description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Item</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Items List</h3>
+            @if (items == null)
+            {
+                <p>Loading...</p>
+            }
+            else if (items.Count == 0)
+            {
+                <p>No items found.</p>
+            }
+            else
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in items)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning" @onclick="() => EditItem(item)">Edit</button>
+                                    <button class="btn btn-sm btn-danger" @onclick="() => DeleteItem(item.Id)">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+
+    @if (editingItem != null)
+    {
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <h3>Edit Item</h3>
+                <form @onsubmit="UpdateItem">
+                    <input type="hidden" @bind="editingItem.Id" />
+                    <div class="mb-3">
+                        <label for="editName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="editName" @bind="editingItem.Name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="editDescription" @bind="editingItem.Description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Update Item</button>
+                    <button type="button" class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private const string ItemsApiUrl = "http://localhost:5143/api/items";
+    private List<Item> items = new();
+    private Item newItem = new();
+    private Item? editingItem = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadItems();
+    }
+
+    private async Task LoadItems()
+    {
+        try
+        {
+            items = await Http.GetFromJsonAsync<List<Item>>(ItemsApiUrl) ?? new List<Item>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading items: {ex.Message}");
+        }
+    }
+
+    private async Task AddItem()
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync(ItemsApiUrl, newItem);
+            if (response.IsSuccessStatusCode)
+            {
+                newItem = new Item(); // Clear the form
+                await LoadItems(); // Refresh the list
+            }
+            else
+            {
+                Console.WriteLine($"Error adding item: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error adding item: {ex.Message}");
+        }
+    }
+
+    private async Task UpdateItem()
+    {
+        try
+        {
+            var response = await Http.PutAsJsonAsync($"{ItemsApiUrl}/{editingItem?.Id}", editingItem);
+            if (response.IsSuccessStatusCode)
+            {
+                editingItem = null;
+                await LoadItems(); // Refresh the list
+            }
+            else
+            {
+                Console.WriteLine($"Error updating item: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error updating item: {ex.Message}");
+        }
+    }
+
+    private async Task DeleteItem(int id)
+    {
+        try
+        {
+            var response = await Http.DeleteAsync($"{ItemsApiUrl}/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                await LoadItems(); // Refresh the list
+            }
+            else
+            {
+                Console.WriteLine($"Error deleting item: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error deleting item: {ex.Message}");
+        }
+    }
+
+    private void EditItem(Item item)
+    {
+        editingItem = new Item
+        {
+            Id = item.Id,
+            Name = item.Name,
+            Description = item.Description
+        };
+    }
+
+    private void CancelEdit()
+    {
+        editingItem = null;
+    }
+}

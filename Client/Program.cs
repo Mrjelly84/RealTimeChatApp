@@ -6,9 +6,8 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-// Register the HttpClient and ChatService
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddSingleton<ChatService>();
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5157/") });
 
+builder.Services.AddSingleton<ChatService>();
 await builder.Build().RunAsync();
 

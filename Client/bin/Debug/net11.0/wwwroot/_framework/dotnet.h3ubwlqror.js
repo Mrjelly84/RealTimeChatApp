@@ -5,7 +5,7 @@ const e=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1
   "mainAssemblyName": "Client",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-VqJ8k5AfEcKhCE/Lhc61wpVgFPFJV1TwsDhOJ80rDQc=",
+    "hash": "sha256-RImT5EgLjmwxjeovmsHMidWrjH/qYZPcVykiS335kcQ=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.5qh83ajnrn.js"
@@ -1296,8 +1296,8 @@ const e=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1
       },
       {
         "virtualPath": "Shared.wasm",
-        "name": "Shared.sgn8u35o3b.wasm",
-        "hash": "sha256-NL2YHJboORqeViSh8bQYVXs56wlphezDh8G6enLc384=",
+        "name": "Shared.eq3dlg04lg.wasm",
+        "hash": "sha256-2jb0eWAycuCcQ2s/NVh0q9X31+x9TkEVIdlHhDFbayE=",
         "cache": "force-cache"
       },
       {
@@ -1308,22 +1308,22 @@ const e=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1
       },
       {
         "virtualPath": "Client.wasm",
-        "name": "Client.o3mzbteeue.wasm",
-        "hash": "sha256-pDlITSsX9n5iQNHBQgop2vumbf1ec76arn6gcMkTcSs=",
+        "name": "Client.37kvlxe7uh.wasm",
+        "hash": "sha256-/3Dot6XkMb98CtqoRw5WsOGE1RlShZON3JHdR2Vs+AY=",
         "cache": "force-cache"
       }
     ],
     "pdb": [
       {
         "virtualPath": "Shared.pdb",
-        "name": "Shared.3t90li4uhh.pdb",
-        "hash": "sha256-WVFJPLc9x2243BwEEw20eMIahOsJfwJBXL6eBL5cLME=",
+        "name": "Shared.qeuuyef0y8.pdb",
+        "hash": "sha256-jsDZe6dzHF7KCFrDj7gC7WELqxbO0sSoI9sPlSaN5Iw=",
         "cache": "force-cache"
       },
       {
         "virtualPath": "Client.pdb",
-        "name": "Client.8r8j0uivlx.pdb",
-        "hash": "sha256-FMu+GLDnZR9Vgg6HBbCvB+EbN+j70qWmc3MpHNka71s=",
+        "name": "Client.z301j1dl9u.pdb",
+        "hash": "sha256-MaKN90kTLh6QJWwYW1np6ruvoE5yI8Ruqxu71clStsw=",
         "cache": "force-cache"
       }
     ],

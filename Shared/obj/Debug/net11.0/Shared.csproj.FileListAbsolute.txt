@@ -9,3 +9,4 @@ C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Share
 C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\refint\Shared.dll
 C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Shared.pdb
 C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\ref\Shared.dll
+C:\Users\willi\OneDrive\Documents\RealTimeChatApp\Shared\obj\Debug\net11.0\Shared.sourcelink.json

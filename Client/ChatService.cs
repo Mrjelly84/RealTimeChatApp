@@ -4,6 +4,7 @@ using Shared.Models;
 public class ChatService
 {
     private HubConnection? _hubConnection;
+    private readonly SemaphoreSlim _startLock = new(1, 1);
     public event Action<ChatMessage>? OnMessageReceived;
 
     public ChatService()
@@ -13,28 +14,40 @@ public class ChatService
 
     public async Task StartAsync()
     {
-        if (_hubConnection == null)
-        {
-            // Use the correct URL - this should be your server's address
-            _hubConnection = new HubConnectionBuilder()
-                .WithUrl("http://localhost:5157/chathub") // Make sure this matches your server port
-                .WithAutomaticReconnect()
-                .Build();
-                
-            _hubConnection.On<ChatMessage>("ReceiveMessage", (message) =>
-            {
-                OnMessageReceived?.Invoke(message);
-            });
-        }
-
+        await _startLock.WaitAsync();
         try
         {
-            await _hubConnection.StartAsync();
-            Console.WriteLine("SignalR connected successfully");
+            if (_hubConnection == null)
+            {
+                _hubConnection = new HubConnectionBuilder()
+                    .WithUrl("http://localhost:5143/chathub")
+                    .WithAutomaticReconnect()
+                    .Build();
+
+                _hubConnection.On<ChatMessage>("ReceiveMessage", (message) =>
+                {
+                    OnMessageReceived?.Invoke(message);
+                });
+            }
+
+            if (_hubConnection.State != HubConnectionState.Disconnected)
+            {
+                return;
+            }
+
+            try
+            {
+                await _hubConnection.StartAsync();
+                Console.WriteLine("SignalR connected successfully");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error starting SignalR connection: {ex.Message}");
+            }
         }
-        catch (Exception ex)
+        finally
         {
-            Console.WriteLine($"Error starting SignalR connection: {ex.Message}");
+            _startLock.Release();
         }
     }
 

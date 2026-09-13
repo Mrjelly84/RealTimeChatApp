@@ -1,22 +1,23 @@
-using Server.Components;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddControllers(); // This is crucial for API endpoints
+builder.Services.AddSignalR();
+
+// Add CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        builder.AllowAnyOrigin()
+        policy.AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader();
-               // Remove AllowCredentials() if you don't need it
-               // .AllowCredentials(); 
     });
 });
-builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -31,8 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors("AllowAll");
-
-app.MapBlazorHub();
+app.MapControllers(); // This is crucial for API endpoints
 app.MapHub<ChatHub>("/chathub");
 
 app.Run();
